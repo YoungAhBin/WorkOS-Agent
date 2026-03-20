@@ -2,7 +2,7 @@
 
 ## 总设计：
 
-- 1.入口层：聊天、CLI、API 都只进入同一个 Agent Loop。
+- 入口层：聊天、CLI、API 都只进入同一个 Agent Loop。
 - Agent Loop：只负责任务理解、工具选择、状态决策，不等待长任务。
 - 工具层：分两类——即时工具（Git、filesystem、CLI、browser）和后台工具（translation_worker、ocr_worker、excel_worker）。前者同步返回，后者只返回 accepted + task_id。
 - 后台任务协议：run_in_background: true 时，由 Task Manager 起子进程/容器 Worker；Worker 持续写 status.json、heartbeat.json、summary.json、result_manifest.json。
